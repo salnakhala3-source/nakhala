@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>لوحة التحكم السرية - إدارة عائلة النخالة</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo">🌿 لوحة تحكم المسؤول (خاصة جداً)</div>
+            <nav><ul><li><a href="index.html">الخروج للموقع العام</a></li></ul></nav>
+        </div>
+    </header>
+
+    <main class="container" style="background: white; padding: 30px; border-radius: 15px;">
+        <h1 style="color: var(--primary-color); margin-bottom: 15px;">قاعدة البيانات الخاصة بالمسؤول</h1>
+        <p style="color: #666; margin-bottom: 25px;">من هنا يمكنك الاطلاع على كافة البيانات التي أرسلها الزوار من جميع واجهات الموقع والتسجيلات:</p>
+
+        <div style="margin-bottom: 20px;">
+            <button onclick="loadData('سجل_الأفراد_الجدد')" class="btn" style="font-size:14px; padding:8px 15px; margin:5px;">سجل الأفراد الجدد</button>
+            <button onclick="loadData('فرع_فلسطين')" class="btn" style="font-size:14px; padding:8px 15px; margin:5px;">فرع فلسطين</button>
+            <button onclick="loadData('فرع_الخليج')" class="btn" style="font-size:14px; padding:8px 15px; margin:5px;">فرع الخليج</button>
+            <button onclick="loadData('فرع_أوروبا')" class="btn" style="font-size:14px; padding:8px 15px; margin:5px;">فرع أوروبا</button>
+            <button onclick="loadData('حضور_الملتقى')" class="btn" style="font-size:14px; padding:8px 15px; margin:5px;">حضور الملتقى</button>
+            <button onclick="loadData('ترشيحات_التكريم')" class="btn" style="font-size:14px; padding:8px 15px; margin:5px;">ترشيحات التكريم</button>
+            <button onclick="clearCurrentData()" class="btn" style="background: #cc0000; color: white; font-size:14px; padding:8px 15px; margin:5px;">حذف القسم الحالي</button>
+        </div>
+
+        <h3 id="currentTitle" style="color: var(--secondary-color); margin-top: 20px; margin-bottom: 10px;">اختر قسماً لعرض البيانات</h3>
+        <div id="dataDisplayArea" style="overflow-x: auto; background: #f9f9f9; padding: 15px; border-radius: 8px; min-height: 200px; border: 1px solid #ddd;">
+            <p style="color: #999;">الرجاء الضغط على أحد الأزرار بالأعلى لعرض السجلات...</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>جميع الحقوق محفوظة © 2026 - نظام إدارة البيانات الخاص</p>
+    </footer>
+
+    <script>
+        let activeKey = '';
+        function loadData(dbKey) {
+            activeKey = dbKey;
+            document.getElementById('currentTitle').innerText = "القسم المعروض: " + dbKey;
+            let data = JSON.parse(localStorage.getItem(dbKey)) || [];
+            
+            let displayArea = document.getElementById('dataDisplayArea');
+            if(data.length === 0) {
+                displayArea.innerHTML = "<p style='color: #666;'>لا توجد بيانات مسجلة في هذا القسم حتى الآن.</p>";
+                return;
+            }
+
+            let html = "<table border='1' style='width:100%; border-collapse: collapse; text-align: right; background: white;'>";
+            html += "<tr style='background: var(--primary-color); color: white;'>";
+            
+            let keys = Object.keys(data[0]);
+            keys.forEach(k => { html += `<th style='padding: 10px;'>${k}</th>`; });
+            html += "</tr>";
+
+            data.forEach(item => {
+                html += "<tr>";
+                keys.forEach(k => { html += `<td style='padding: 10px; border: 1px solid #ddd;'>${item[k] || ''}</td>`; });
+                html += "</tr>";
+            });
+            html += "</table>";
+            displayArea.innerHTML = html;
+        }
+
+        function clearCurrentData() {
+            if(activeKey && confirm("هل أنت متأكد من حذف جميع بيانات هذا القسم نهائياً؟")) {
+                localStorage.removeItem(activeKey);
+                loadData(activeKey);
+            }
+        }
+    </script>
+</body>
+</html>

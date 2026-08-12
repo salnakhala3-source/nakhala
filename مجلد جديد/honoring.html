@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>تكريم المتفوقين - عائلة النخالة</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo"><span>🌿</span> عائلة النخالة العالمية</div>
+            <nav><ul><li><a href="index.html">الرئيسية</a></li></ul></nav>
+        </div>
+    </header>
+
+    <div class="container" style="background: white; padding: 40px; border-radius: 15px; margin-top: 40px;">
+        <h1 style="color: var(--primary-color); margin-bottom: 20px;">منصة تكريم المتفوقين والكفاءات</h1>
+        <p style="font-size: 18px; line-height: 1.8; color: #555;">الاحتفاء بأبناء العائلة الحاصلين على درجات التميز.</p>
+        
+        <div class="form-section" style="margin-top: 40px;">
+            <h3 style="margin-bottom: 20px; color: var(--primary-color);">سجّل اسم المتفوق للتكريم</h3>
+            <form id="honoringForm">
+                <div class="form-group">
+                    <label>اسم المكرم الرباعي:</label>
+                    <input type="text" placeholder="الاسم الكامل" required>
+                </div>
+                <div class="form-group">
+                    <label>مجال التفوق أو الشهادة:</label>
+                    <select required>
+                        <option value="">اختر المجال...</option>
+                        <option value="الثانوية العامة">الثانوية العامة</option>
+                        <option value="البكالوريوس">البكالوريوس</option>
+                        <option value="دراسات عليا">ماجستير / دكتوراه</option>
+                        <option value="إنجاز مهني">إنجاز مهني مميز</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>التفاصيل والمعدل / جهة التخرج:</label>
+                    <input type="text" placeholder="كلية الطب - امتياز..." required>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">إرسال البيانات</button>
+            </form>
+        </div>
+        <div style="margin-top: 30px;"><a href="index.html" class="btn" style="background: #666;">العودة للرئيسية</a></div>
+    </div>
+    <footer><p>جميع الحقوق محفوظة © 2026</p></footer>
+    <script src="script.js"></script>
+</body>
+</html>
