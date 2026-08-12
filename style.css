@@ -38,21 +38,26 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
+    flex-wrap: nowrap; /* يمنع نزول العناصر لأسفل وابقائها في سطر واحد */
 }
 
 .logo {
-    font-size: 24px;
+    font-size: 20px; /* تصغير طفيف للحجم ليتسع النص الطويل */
     font-weight: bold;
     color: var(--secondary-color);
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
+    white-space: nowrap; /* يمنع التفاف النص ويجعله سَطراً أفقياً واحداً */
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 nav ul {
     display: flex;
     list-style: none;
     gap: 20px;
+    white-space: nowrap;
 }
 
 nav ul li a {
@@ -74,13 +79,13 @@ nav ul li a:hover {
 }
 
 .hero h1 {
-    font-size: 48px;
+    font-size: 38px; /* تم تعديله ليتناسب مع العناوين الطويلة */
     margin-bottom: 20px;
     color: var(--secondary-color);
 }
 
 .hero p {
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 30px;
     max-width: 700px;
     margin-left: auto;
@@ -98,6 +103,7 @@ nav ul li a:hover {
     cursor: pointer;
     transition: var(--transition);
     text-decoration: none;
+    display: inline-block;
 }
 
 .btn:hover {
@@ -199,7 +205,7 @@ nav ul li a:hover {
     transition: var(--transition);
 }
 
-.form-group input:focus, .form-group select:focus {
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
     border-color: var(--secondary-color);
     box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
 }
@@ -210,4 +216,22 @@ footer {
     text-align: center;
     padding: 30px 0;
     margin-top: 80px;
+}
+
+/* تنسيق خاص للشاشات الصغيرة جداً لضمان عدم تداخل الشعار والقائمة */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .logo {
+        font-size: 16px;
+    }
+    nav ul {
+        gap: 12px;
+        font-size: 14px;
+    }
+    .hero h1 {
+        font-size: 28px;
+    }
 }
