@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة الإعلانات والتعازي - عائلة النخالة</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .announcements-container {
+            max-width: 900px;
+            margin: 40px auto;
+        }
+        .announcement-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+            border-right: 5px solid var(--secondary-color);
+            transition: var(--transition);
+        }
+        .announcement-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+        .announcement-card.condolence {
+            border-right-color: #c0392b;
+        }
+        .announcement-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+        .announcement-card.condolence h3 {
+            color: #c0392b;
+        }
+        .announcement-date {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 15px;
+        }
+        .announcement-card p {
+            color: #444;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo"><span>🌿</span> عائلة النخالة العالمية</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="directory.html">دليل العائلة</a></li>
+                    <li><a href="tree.html">شجرة العائلة</a></li>
+                    <li><a href="announcements.html" style="color: var(--secondary-color);">الإعلانات والتعازي</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">لوحة الإعلانات، التهاني والتعازي</h2>
+        
+        <div class="announcements-container">
+            <!-- خبر تعزية مثال -->
+            <div class="announcement-card condolence">
+                <h3>إازء وعزاء واجب</h3>
+                <div class="announcement-date">منشور بتاريخ: 12 أغسطس 2026</div>
+                <p>تتقدم عائلة النخالة في الوطن والمهجر بخالص العزاء والمواساة بوفاة الفقيد الغالي، داعين المولى عز وجل أن يتغمده بواسع رحمته ومغفرته وأن يسكنه فسيح جناته ويلهم أهله وجميل الصبر والسلوان.</p>
+            </div>
+
+            <!-- خبر فرح أو تهنئة مثال -->
+            <div class="announcement-card">
+                <h3>مبارك الزواج الميمون</h3>
+                <div class="announcement-date">منشور بتاريخ: 10 أغسطس 2026</div>
+                <p>نبارك باقة ورد معطرة لأبناء العمومة بمناسبة زفاف الشاب الودود، متمنين لهما حياة زوجية سعيدة ومباركة، وألف مبروك للعروسين.</p>
+            </div>
+            
+            <!-- إعلان عام مثال -->
+            <div class="announcement-card">
+                <h3>إعلان هام بخصوص الملتقى السنوي</h3>
+                <div class="announcement-date">منشور بتاريخ: 05 أغسطس 2026</div>
+                <p>تدعو لجنة التنسيق العليا أبناء العائلة الكرام لحضور اللقاء السنوي العام، وذلك لمناقشة المستجدات وتوطيد أواصر المحبة والتواصل بين أبناء الفروع المختلفة حول العالم.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>جميع الحقوق محفوظة © 2026 - منصة عائلة النخالة العالمية</p>
+    </footer>
+</body>
+</html>
