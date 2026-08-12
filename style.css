@@ -24,7 +24,7 @@ body {
 header {
     background: linear-gradient(135deg, var(--primary-color), #081c15);
     color: var(--white);
-    padding: 20px 0;
+    padding: 15px 0;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     position: sticky;
     top: 0;
@@ -37,26 +37,24 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
-    flex-wrap: nowrap; /* يمنع نزول العناصر لأسفل وابقائها في سطر واحد */
+    padding: 0 15px;
+    flex-wrap: nowrap; /* يمنع نزول العناصر لأسفل وابقائها في سطر واحد دائماً */
 }
 
 .logo {
-    font-size: 20px; /* تصغير طفيف للحجم ليتسع النص الطويل */
+    font-size: 16px; /* حجم متناسق ليتسع النص الطويل على الهواتف والشاشات */
     font-weight: bold;
     color: var(--secondary-color);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     white-space: nowrap; /* يمنع التفاف النص ويجعله سَطراً أفقياً واحداً */
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 nav ul {
     display: flex;
     list-style: none;
-    gap: 20px;
+    gap: 12px;
     white-space: nowrap;
 }
 
@@ -64,6 +62,7 @@ nav ul li a {
     color: var(--white);
     text-decoration: none;
     font-weight: 600;
+    font-size: 14px;
     transition: var(--transition);
 }
 
@@ -79,7 +78,7 @@ nav ul li a:hover {
 }
 
 .hero h1 {
-    font-size: 38px; /* تم تعديله ليتناسب مع العناوين الطويلة */
+    font-size: 38px;
     margin-bottom: 20px;
     color: var(--secondary-color);
 }
@@ -218,20 +217,18 @@ footer {
     margin-top: 80px;
 }
 
-/* تنسيق خاص للشاشات الصغيرة جداً لضمان عدم تداخل الشعار والقائمة */
+/* تعديلات تناسب الهواتف والشاشات الصغيرة مع بقاء الهيدر في صف أفقي واحد */
 @media (max-width: 768px) {
-    .nav-container {
-        flex-direction: column;
-        gap: 15px;
-    }
     .logo {
-        font-size: 16px;
+        font-size: 12px; /* تصغير حجم خط العنوان لكي يظهر كاملاً في سطر واحد على الجوال */
     }
     nav ul {
-        gap: 12px;
-        font-size: 14px;
+        gap: 8px;
+    }
+    nav ul li a {
+        font-size: 12px;
     }
     .hero h1 {
-        font-size: 28px;
+        font-size: 26px;
     }
 }
