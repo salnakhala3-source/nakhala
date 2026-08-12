@@ -19,7 +19,7 @@ const db = getFirestore(app);
 
 document.addEventListener('DOMContentLoaded', function() {
     
-    // 1. تسجيل فرد جديد (index.html)
+    // تسجيل فرد جديد (index.html)
     const familyForm = document.getElementById('familyForm');
     if(familyForm) {
         familyForm.addEventListener('submit', async function(e) {
@@ -39,13 +39,6 @@ document.addEventListener('DOMContentLoaded', function() {
             familyForm.reset();
         });
     }
-
-    // 2. تفعيل كافة النماذج في الفروع والملتقيات والتكريم
-    setupGenericForm('palestineForm', 'فرع_فلسطين');
-    setupGenericForm('gulfForm', 'فرع_الخليج');
-    setupGenericForm('europeForm', 'فرع_أوروبا');
-    setupGenericForm('meetingForm', 'حضور_الملتقى');
-    setupGenericForm('honoringForm', 'ترشيحات_التكريم');
 });
 
 // دالة تخزين البيانات في سيرفر Firebase الحقيقي
@@ -56,29 +49,5 @@ async function saveToAdminDatabase(dbKey, newData) {
     } catch (e) {
         console.error("خطأ أثناء الحفظ في السيرفر: ", e);
         alert("حدث خطأ أثناء الاتصال بالسيرفر، يرجى المحاولة لاحقاً.");
-    }
-}
-
-// دالة عامة لربط النماذج وسحب البيانات بناءً على عناوين الحقول
-function setupGenericForm(formId, dbKey) {
-    const formElement = document.getElementById(formId);
-    if(formElement) {
-        formElement.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const inputs = formElement.querySelectorAll('input, select, textarea');
-            let data = { "وقت الإرسال": new Date().toLocaleString() };
-            
-            inputs.forEach((input, index) => {
-                if(input.type !== 'submit' && input.type !== 'button') {
-                    let label = input.previousElementSibling ? input.previousElementSibling.innerText : `حقل_${index}`;
-                    data[label.replace(':', '')] = input.value;
-                }
-            });
-            
-            // حفظ البيانات المرسلة في السيرفر
-            await saveToAdminDatabase(dbKey, data);
-            alert('تم إرسال وحفظ البيانات في السيرفر الرسمي بنجاح!');
-            formElement.reset();
-        });
     }
 }
