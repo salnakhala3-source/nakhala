@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const data = {
                 "الاسم": document.getElementById('fullName').value,
                 "رقم الهاتف": document.getElementById('phone').value,
+                "رقم الهوية": document.getElementById('idNumber').value, // <-- تم إضافة حقل رقم الهوية هنا
                 "تاريخ الميلاد": document.getElementById('birthdate').value,
                 "الفرع": document.getElementById('branch').value,
                 "وقت التسجيل": new Date().toLocaleString()
@@ -51,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
 async function saveToAdminDatabase(dbKey, newData) {
     try {
         // يحفظ البيانات في جدول (Collection) داخل قاعدة بيانات جوجل باسم الـ dbKey
-        const docRef = await addDoc(collection(db, dbKey), newData);
+        const docRef = await addDoc(collection(db, dbKey), newData);[cite: 1]
         console.log("تم الحفظ في السيرفر بنجاح برقم المعرف: ", docRef.id);
     } catch (e) {
         console.error("خطأ أثناء الحفظ في السيرفر: ", e);
