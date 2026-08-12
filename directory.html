@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل عائلة النخالة</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .directory-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .search-box {
+            width: 100%;
+            padding: 12px 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 25px;
+            outline: none;
+            transition: var(--transition);
+        }
+        .search-box:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
+        }
+        .family-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: right;
+        }
+        .family-table th, .family-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .family-table th {
+            background-color: var(--primary-color);
+            color: var(--white);
+            font-weight: 600;
+        }
+        .family-table tr:hover {
+            background-color: #f9f9f9;
+        }
+        .no-data {
+            text-align: center;
+            padding: 30px;
+            color: #771;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo"><span>🌿</span> عائلة النخالة العالمية</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="directory.html" style="color: var(--secondary-color);">دليل العائلة</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">دليل أبناء عائلة النخالة</h2>
+        
+        <div class="directory-container">
+            <input type="text" id="searchInput" class="search-box" placeholder="ابحث بالاسم أو الفرع...">
+            
+            <div style="overflow-x: auto;">
+                <table class="family-table">
+                    <thead>
+                        <tr>
+                            <th>الاسم الرباعي</th>
+                            <th>رقم الهاتف</th>
+                            <th>تاريخ الميلاد</th>
+                            <th>الفرع / الإقامة</th>
+                            <th>وقت التسجيل</th>
+                        </tr>
+                    </thead>
+                    <tbody id="familyTableBody">
+                        <tr>
+                            <td colspan="5" class="no-data">جاري تحميل البيانات من السيرفر...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>جميع الحقوق محفوظة © 2026 - منصة عائلة النخالة العالمية</p>
+    </footer>
+
+    <!-- ربط جافا سكريبت لجلب البيانات وعرضها وتفعيل البحث -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+          apiKey: "AIzaSyDbYy9vleMCQWPi2a39Fk_8APwKnLMoo9o",
+          authDomain: "nakhala-project.firebaseapp.com",
+          projectId: "nakhala-project",
+          storageBucket: "nakhala-project.firebasestorage.app",
+          messagingSenderId: "158051158867",
+          appId: "1:158051158867:web:16b9361221cbe157d96fa6",
+          measurementId: "G-CK7EJ54D8M"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        let allMembers = [];
+
+        async function loadFamilyDirectory() {
+            const tableBody = document.getElementById('familyTableBody');
+            try {
+                const querySnapshot = await getDocs(collection(db, "سجل_الأفراد_الجدد"));
+                allMembers = [];
+                querySnapshot.forEach((doc) => {
+                    allMembers.push(doc.data());
+                });
+
+                displayTable(allMembers);
+            } catch (error) {
+                console.error("خطأ في جلب البيانات: ", error);
+                tableBody.innerHTML = `<tr><td colspan="5" class="no-data" style="color:red;">حدث خطأ أثناء جلب البيانات من السيرفر.</td></tr>`;
+            }
+        }
+
+        function displayTable(members) {
+            const tableBody = document.getElementById('familyTableBody');
+            if (members.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="5" class="no-data">لا توجد بيانات مسجلة حتى الآن.</td></tr>`;
+                return;
+            }
+
+            tableBody.innerHTML = "";
+            members.forEach(member => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${member["الاسم"] || '-'}</td>
+                    <td>${member["رقم الهاتف"] || '-'}</td>
+                    <td>${member["تاريخ الميلاد"] || '-'}</td>
+                    <td>${member["الفرع"] || '-'}</td>
+                    <td>${member["وقت التسجيل"] || '-'}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // تفعيل شريط البحث الفوري
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const term = e.target.value.toLowerCase();
+            const filtered = allMembers.filter(m => {
+                const name = (m["الاسم"] || "").toLowerCase();
+                const branch = (m["الفرع"] || "").toLowerCase();
+                return name.includes(term) || branch.includes(term);
+            });
+            displayTable(filtered);
+        });
+
+        // تشغيل الدالة عند تحميل الصفحة
+        window.addEventListener('DOMContentLoaded', loadFamilyDirectory);
+    </script>
+</body>
+</html>
