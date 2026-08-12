@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الملتقى السنوي العام - عائلة النخالة</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo"><span>🌿</span> عائلة النخالة العالمية</div>
+            <nav><ul><li><a href="index.html">الرئيسية</a></li></ul></nav>
+        </div>
+    </header>
+
+    <div class="container" style="background: white; padding: 40px; border-radius: 15px; margin-top: 40px; margin-bottom: 40px;">
+        <h1 style="color: var(--primary-color); margin-bottom: 20px;">الملتقى السنوي الجامع لأبناء العائلة</h1>
+        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1000&q=80" style="width:100%; height:350px; object-fit:cover; border-radius:10px; margin-bottom:20px;" alt="ملتقى العائلة">
+        <p style="font-size: 18px; line-height: 1.8; color: #555;">اللقاء السنوي الجامع لأبناء عائلة النخالة لمناقشة المستجدات، تعزيز أواصر المحبة وصلة الرحم، واستعراض الإنجازات السنوية للعائلة في شتى المجالات.</p>
+        
+        <div style="margin: 30px 0; background: #fdf2f4; padding: 20px; border-radius: 8px; border-right: 5px solid var(--secondary-color);">
+            <h3>تفاصيل الملتقى:</h3>
+            <p><strong>الموعد المقترح:</strong> عيد الفطر المبارك (أو الإجازة الرسمية القادمة)</p>
+            <p><strong>الهدف:</strong> توطيد العلاقات وتعريف الأجيال الجديدة ببعضهم البعض.</p>
+        </div>
+
+        <div class="form-section" style="margin-top: 40px;">
+            <h3 style="margin-bottom: 20px; color: var(--primary-color);">التسجيل لحضور الملتقى السنوي</h3>
+            <form onsubmit="event.preventDefault(); alert('تم تسجيل بيانات حضورك للملتقى بنجاح!');">
+                <div class="form-group">
+                    <label>الاسم الكامل:</label>
+                    <input type="text" placeholder="الاسم الرباعي" required>
+                </div>
+                <div class="form-group">
+                    <label>رقم التواصل (واتساب):</label>
+                    <input type="tel" placeholder="+970..." required>
+                </div>
+                <div class="form-group">
+                    <label>عدد المرافقين معك:</label>
+                    <input type="number" min="0" value="0" style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc;" required>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">تسجيل الحضور</button>
+            </form>
+        </div>
+
+        <div style="margin-top: 30px;">
+            <a href="index.html" class="btn" style="background: #666;">العودة للرئيسية</a>
+        </div>
+    </div>
+
+    <footer><p>جميع الحقوق محفوظة © 2026 - منصة عائلة النخالة العالمية</p></footer>
+</body>
+</html>
